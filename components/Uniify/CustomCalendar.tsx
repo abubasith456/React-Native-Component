@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 // LegendItem type format
-type LegendItem = {
+export type LegendItem = {
     label: string;
     color: string;
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
-import CustomCalender, { MarkedDatesCircle, MarkedDatesDot } from '../../components/Uniify/CustomCalendar';
+import CustomCalender, { LegendItem, MarkedDatesCircle, MarkedDatesDot } from '../../components/Uniify/CustomCalendar';
 
 const MultiColorSelectionCalendar = () => {
 
@@ -21,7 +21,7 @@ const MultiColorSelectionCalendar = () => {
     };
 
     {/* Legend Item - Dot */ }
-    const legendItemsDot = [
+    const legendItemsDot: LegendItem[] = [
         { label: 'Leave Taken', color: 'red' },
         { label: 'Public Holiday', color: 'green' },
         { label: 'Personal Leave', color: 'blue' },
@@ -35,7 +35,7 @@ const MultiColorSelectionCalendar = () => {
     };
 
     {/* Legend Item - Circle */ }
-    const legendItemsCircle = [
+    const legendItemsCircle: LegendItem[] = [
         { label: 'Leave Taken', color: 'green' },
         { label: 'Public Holiday', color: 'orange' },
         { label: 'Personal Leave', color: 'black' },
