@@ -4,6 +4,7 @@ import StartingScreen from './screens/game/StartingScreen';
 import LeaveScreen from './screens/LeaveApp/LeaveScreen';
 import DashboardCalendar from './screens/LeaveApp/CalanderView';
 import MultiColorSelectionCalendar from './screens/LeaveApp/MultiColorCalander';
+import HomeScreen from './screens/LeaveApp/attendence/HomeScreen';
 
 export default function App() {
   return (
@@ -22,7 +23,11 @@ export default function App() {
       {/* <DashboardCalendar /> */}
 
       {/* Multi color selection Calander View */}
-      <MultiColorSelectionCalendar />
+      {/* <MultiColorSelectionCalendar /> */}
+
+      {/* Multi color selection Calander View */}
+      <HomeScreen />
+
     </>
   );
 }
