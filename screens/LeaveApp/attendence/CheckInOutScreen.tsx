@@ -4,7 +4,6 @@ import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getFormattedTimestamp } from '../../../utils/SystemUtil';
 
-
 const officeLocations = [
     { name: 'Office A', latitude: 37.7749, longitude: -122.4194 },
     { name: 'Office B', latitude: 34.0522, longitude: -118.2437 },
@@ -92,9 +91,15 @@ const CheckInOutScreen = ({ navigation }: any) => {
             )}
             <Text>Clock-In Time: {clockInTime || 'Not Clocked In'}</Text>
             <Text>Clock-Out Time: {clockOutTime || 'Not Clocked Out'}</Text>
-            <Button title="Clock In" onPress={handleClockIn} disabled={isCheckedIn} />
-            <Button title="Clock Out" onPress={handleClockOut} disabled={!isCheckedIn} />
-            <Button title="View Attendance History" onPress={() => navigation.navigate('Attendance History')} />
+            <View style={{ margin: 10 }}>
+                <Button title="Clock In" onPress={handleClockIn} disabled={isCheckedIn} />
+            </View>
+            <View style={{ margin: 10 }}>
+                <Button title="Clock Out" onPress={handleClockOut} disabled={!isCheckedIn} />
+            </View>
+            <View style={{ margin: 10 }}>
+                <Button title="View Attendance History" onPress={() => navigation.navigate('Attendance History')} />
+            </View>
         </View>
     );
 };
