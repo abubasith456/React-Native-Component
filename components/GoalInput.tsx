@@ -30,7 +30,7 @@ function GoalInput(props: any) {
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
                         <Button
-                            color='white'
+                            color='green'
                             title='Add Goal' onPress={setGoalsToList} />
                     </View>
                     <View style={styles.button}>
