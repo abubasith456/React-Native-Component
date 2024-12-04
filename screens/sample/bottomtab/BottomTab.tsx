@@ -16,12 +16,15 @@ export default function BottomTab() {
 
       }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
-
         tabBarIcon: () => {
           return <Ionicons name="home" size={20} />
         }
       }} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{
+        tabBarIcon: () => {
+          return <Ionicons name="person" size={20} />
+        }
+      }} />
     </Tab.Navigator>
   );
 
