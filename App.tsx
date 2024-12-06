@@ -10,6 +10,7 @@ import AttendanceMain from './screens/LeaveApp/attendence/AttendanceMain';
 import BottomTab from './screens/sample/bottomtab/BottomTab';
 import { Provider } from 'react-redux'
 import { store } from './core/state_management/redux/store';
+import CaloriesCalculatorScreen from './screens/health/CaloriesCalculatorScreen';
 
 export default function App() {
   const Drawer = createDrawerNavigator();
@@ -26,6 +27,7 @@ export default function App() {
               <Drawer.Screen name='Custom Calender Screen' component={MultiColorSelectionCalendar} />
               <Drawer.Screen name='Attendance Screen' component={AttendanceMain} />
               <Drawer.Screen name='Bottom Tab' component={BottomTab} />
+              <Drawer.Screen name='Calories Calculator Screen' component={CaloriesCalculatorScreen} />
             </Drawer.Navigator>
           </NavigationContainer>
         </SafeAreaView>
