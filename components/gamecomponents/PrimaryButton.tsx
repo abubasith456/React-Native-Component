@@ -1,12 +1,13 @@
 
 import { View, StyleSheet, TextInput, TouchableOpacity, Text } from "react-native";
+import { GlobalStyle } from "../../constants/styles";
 
 function PrimaryButton(props: any) {
     return (
         <TouchableOpacity
-            style={styles.container}
+            style={[styles.container, props.buttonStyle]}
             onPress={() => props.onButtonClick()}>
-            <Text style={styles.buttonText}>{props.text}</Text>
+            <Text style={[styles.buttonText, props.textStyle]}>{props.text}</Text>
         </TouchableOpacity>
     );
 }
@@ -16,12 +17,11 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
     container: {
         height: 50,
-        backgroundColor: 'blue',
+        backgroundColor: GlobalStyle.primaryColor,
         paddingVertical: 10,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 40
     },
     buttonText: {
         color: 'white',

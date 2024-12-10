@@ -11,24 +11,48 @@ import BottomTab from './screens/sample/bottomtab/BottomTab';
 import { Provider } from 'react-redux'
 import { store } from './core/state_management/redux/store';
 import CaloriesCalculatorScreen from './screens/health/CaloriesCalculatorScreen';
+import Others from './screens/sample/Others';
+import { createStackNavigator } from '@react-navigation/stack';
+import ManageExpenses from './screens/sample/expense/ExpensesManager';
+
+
+export type RootStackParamList = {
+  InitalScreen: undefined;
+  ExpenseManager: undefined;
+}
+
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
-  const Drawer = createDrawerNavigator();
+
+  const InitailScreen = () => {
+    return (
+      <Drawer.Navigator>
+        <Drawer.Screen name='Demo' component={GoalsScreen} />
+        <Drawer.Screen name='Sample Game' component={StartingScreen} />
+        <Drawer.Screen name='Leave Screen' component={LeaveScreen} />
+        <Drawer.Screen name='Custom Calender Screen' component={MultiColorSelectionCalendar} />
+        <Drawer.Screen name='Attendance Screen' component={AttendanceMain} />
+        <Drawer.Screen name='Bottom Tab' component={BottomTab} />
+        <Drawer.Screen name='Calories Calculator Screen' component={CaloriesCalculatorScreen} />
+        <Drawer.Screen name='Others' component={Others} />
+      </Drawer.Navigator>
+    )
+  };
+
   return (
     <>
       <StatusBar style='auto' />
       <Provider store={store}>
         <SafeAreaView style={{ flex: 1 }}>
           <NavigationContainer>
-            <Drawer.Navigator>
-              <Drawer.Screen name='Demo' component={GoalsScreen} />
-              <Drawer.Screen name='Sample Game' component={StartingScreen} />
-              <Drawer.Screen name='Leave Screen' component={LeaveScreen} />
-              <Drawer.Screen name='Custom Calender Screen' component={MultiColorSelectionCalendar} />
-              <Drawer.Screen name='Attendance Screen' component={AttendanceMain} />
-              <Drawer.Screen name='Bottom Tab' component={BottomTab} />
-              <Drawer.Screen name='Calories Calculator Screen' component={CaloriesCalculatorScreen} />
-            </Drawer.Navigator>
+            <Stack.Navigator>
+              <Stack.Screen name='InitalScreen' children={InitailScreen} options={{
+                headerShown: false
+              }} />
+              <Stack.Screen name="ExpenseManager" component={ManageExpenses} />
+            </Stack.Navigator>
           </NavigationContainer>
         </SafeAreaView>
       </Provider>

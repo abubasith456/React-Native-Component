@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, Modal, TextInput, StyleSheet, TouchableOpacity, ScrollView, Button } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../core/state_management/redux/store'
+import { setActivityLevel, setAge, setCalories, setGender, setHeight, setIsActivityPickerOpen, setIsPickerOpen, setweight } from '../../core/state_management/redux/calories';
 
 
 const CaloriesCalculatorScreen = () => {
-    const [age, setAge] = useState('');
-    const [isPickerOpen, setPickerOpen] = useState(false);
-    const [isActivityPickerOpen, setActivityPickerOpen] = useState(false);
-    const [weight, setWeight] = useState('');
-    const [height, setHeight] = useState('');
-    const [gender, setGender] = useState('male'); // Default gender
-    const [activityLevel, setActivityLevel] = useState<'sedentary' | 'lightlyActive' | 'moderatelyActive' | 'veryActive' | 'extraActive'>('sedentary'); // Default activity level
-    const [calories, setCalories] = useState<number | null>(null);
+    const { age, isPickerOpen, isActivityPickerOpen,
+        weight, height, gender, activityLevel, calories } = useSelector((state: RootState) => state.calories);
+    const dispatch = useDispatch();
 
     const activityFactors: Record<'sedentary' | 'lightlyActive' | 'moderatelyActive' | 'veryActive' | 'extraActive', number> = {
         sedentary: 1.2,
@@ -39,7 +37,7 @@ const CaloriesCalculatorScreen = () => {
         }
 
         const totalCalories = bmr * activityFactors[activityLevel];
-        setCalories(Math.round(totalCalories));
+        dispatch(setCalories(Math.round(totalCalories)));
     };
 
     return (
@@ -50,24 +48,30 @@ const CaloriesCalculatorScreen = () => {
                 placeholder="Enter your age"
                 keyboardType="numeric"
                 value={age}
-                onChangeText={setAge}
+                onChangeText={(text) => {
+                    dispatch(setAge(text));
+                }}
             />
             <TextInput
                 style={styles.input}
                 placeholder="Enter your weight (kg)"
                 keyboardType="numeric"
                 value={weight}
-                onChangeText={setWeight}
+                onChangeText={(text) => {
+                    dispatch(setweight(text));
+                }}
             />
             <TextInput
                 style={styles.input}
                 placeholder="Enter your height (cm)"
                 keyboardType="numeric"
                 value={height}
-                onChangeText={setHeight}
+                onChangeText={(text) => {
+                    dispatch(setHeight(text));
+                }}
             />
             <Text style={styles.label}>Selected Gender: {gender === 'male' ? 'Male' : 'Female'}</Text>
-            <Button title="Select Gender" onPress={() => setPickerOpen(true)} />
+            <Button title="Select Gender" onPress={() => dispatch(setIsPickerOpen())} />
             {/* Modal for Gender Picker */}
             <Modal visible={isPickerOpen} animationType="slide" transparent={true}>
                 <View style={styles.modalContainer}>
@@ -76,14 +80,14 @@ const CaloriesCalculatorScreen = () => {
                         <Picker
                             selectedValue={gender}
                             style={styles.picker}
-                            onValueChange={(itemValue) => setGender(itemValue)}
+                            onValueChange={(itemValue) => dispatch(setGender(itemValue))}
                         >
                             <Picker.Item label="Male" value="male" />
                             <Picker.Item label="Female" value="female" />
                         </Picker>
                         <TouchableOpacity
                             style={styles.doneButton}
-                            onPress={() => setPickerOpen(false)}
+                            onPress={() => dispatch(setIsPickerOpen())}
                         >
                             <Text style={styles.doneButtonText}>Done</Text>
                         </TouchableOpacity>
@@ -91,7 +95,7 @@ const CaloriesCalculatorScreen = () => {
                 </View>
             </Modal>
             <Text style={styles.label}>Selected Activity Level: {activityLevel}</Text>
-            <Button title="Select Gender" onPress={() => setActivityPickerOpen(true)} />
+            <Button title="Select Activity Level" onPress={() => dispatch(setIsActivityPickerOpen())} />
             <Modal visible={isActivityPickerOpen} animationType="slide" transparent={true}>
                 <View style={styles.modalContainer}>
                     <View style={styles.pickerContainer}>
@@ -99,7 +103,7 @@ const CaloriesCalculatorScreen = () => {
                         <Picker
                             selectedValue={activityLevel}
                             style={styles.picker}
-                            onValueChange={(itemValue) => setActivityLevel(itemValue)}
+                            onValueChange={(itemValue) => dispatch(setActivityLevel(itemValue))}
                         >
                             <Picker.Item label="Sedentary (little to no exercise)" value="sedentary" />
                             <Picker.Item label="Lightly active (light exercise 1-3 days a week)" value="lightlyActive" />
@@ -109,7 +113,7 @@ const CaloriesCalculatorScreen = () => {
                         </Picker>
                         <TouchableOpacity
                             style={styles.doneButton}
-                            onPress={() => setActivityPickerOpen(false)}
+                            onPress={() => dispatch(setIsActivityPickerOpen())}
                         >
                             <Text style={styles.doneButtonText}>Done</Text>
                         </TouchableOpacity>
