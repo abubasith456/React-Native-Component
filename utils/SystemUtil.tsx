@@ -20,3 +20,7 @@ export const getFormattedTimestamp = (date = new Date(), locale = 'en-US') => {
     return `${formattedDate}, ${formattedTime}`;
 };
 
+export const getFormatedDate = (date: any) => {
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+}
+

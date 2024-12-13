@@ -2,7 +2,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { View } from "react-native";
 import PrimaryButton from "../../components/gamecomponents/PrimaryButton";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../router/StackNavigation";
 
 function Others() {
 
