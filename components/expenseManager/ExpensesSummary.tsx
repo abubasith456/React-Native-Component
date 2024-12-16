@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet } from "react-native"
 import { GlobalStyle } from "../../constants/styles";
 import { Expense } from "../../core/state_management/redux/expense";
+import { useSelector } from "react-redux";
+import { RootState } from "../../core/state_management/redux/store";
 
 
 type ExpensesSummaryProps = {
@@ -10,7 +12,9 @@ type ExpensesSummaryProps = {
 
 export const ExpensesSummary: React.FC<ExpensesSummaryProps> = ({ expenses, periodName }) => {
 
-    const validExpenses = Array.isArray(expenses) ? expenses : [];
+    const expensesData = useSelector((state: RootState) => state.expense)
+
+    const validExpenses = Array.isArray(expensesData) ? expensesData : [];
     const expensesAmount = validExpenses.reduce((sum: number, expense: Expense) => {
         console.log("Expense => " + expense.amount);
         return sum + expense.amount;

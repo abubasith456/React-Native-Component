@@ -6,7 +6,7 @@ import { ExpensesList } from "../../../components/expenseManager/ExpensesList";
 
 export const ExpensesOverViewScreen = () => {
     const expenses = useSelector((state: RootState) => state.expense)
-
+    console.log("expenses => " + expenses)
     return (
         <View style={styles.container}>
             <ExpensesSummary expenses={expenses} periodName={"Last 7 days"} />

@@ -6,6 +6,8 @@ import { AllExpensesScreen } from "./AllExpensesScreen";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../router/StackNavigation";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -19,7 +21,7 @@ function ManageExpensesScreen() {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
             <BottomTabs.Navigator
                 screenOptions={{
                     headerShown: false,
@@ -34,7 +36,7 @@ function ManageExpensesScreen() {
                     <Text style={styles.floatingButtonText}>+</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 

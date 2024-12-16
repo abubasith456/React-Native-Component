@@ -14,6 +14,9 @@ function Others() {
             <PrimaryButton text="Expense Manager" onButtonClick={() => {
                 navigation.navigate('ExpenseManager');
             }} />
+            <PrimaryButton buttonStyle={{ marginTop: 20 }} text="Profile Screen" onButtonClick={() => {
+                navigation.navigate('ProfileScreen');
+            }} />
         </View>
     )
 }
